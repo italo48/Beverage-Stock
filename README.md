@@ -1,4 +1,5 @@
-# Lord-Of-Guns-Shop
+# Beverage-Stock
+
 ## Tecnologias
 - Java
 - JUnit
