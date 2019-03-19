@@ -1,4 +1,4 @@
-package bvs;
+package bvs.test;
 
 import static org.junit.Assert.assertTrue;
 
