@@ -16,7 +16,7 @@ public class BebidaService {
 //		A checagem disso é aqui?
 		
 //		se cadastra bebidas nulas ou invalidas
-		if (b.getId() ==  0) {
+		if (b.getId() <  0) {
 			return false;
 		}
 //		se cadastra uma bebida ja cadastrada
