@@ -1,16 +1,15 @@
 package bvs.controle;
 
-import bvs.entity.Bebida;
-import bvs.entity.InMemoryDB;
+import bvs.entity.Beverage;
 
-public class BebidaService {
+public class BeverageControl {
 	private InMemoryDB db;
 
-	public BebidaService(InMemoryDB b) {
+	public BeverageControl(InMemoryDB b) {
 		this.db = b;
 	}
 	
-	public boolean adicionarBebida(Bebida b) {
+	public boolean adicionarBebida(Beverage b) {
 //		Refatoração
 //		O teste é: se o software salva uma bebida com construtor vazio.
 //		A checagem disso é aqui?

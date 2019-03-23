@@ -1,6 +1,6 @@
 package bvs.entity;
 
-public class Bebida {
+public class Beverage {
 	private long id;
 	private String nome;
 	private String tipo;
@@ -9,10 +9,10 @@ public class Bebida {
 	private int qtd;
 	private boolean isProibida;
 	
-	public Bebida() {
+	public Beverage() {
 	}
 
-	public Bebida(long id, String nome, String tipo, float preco, short teorAlc, int qtd,boolean isProibida) {
+	public Beverage(long id, String nome, String tipo, float preco, short teorAlc, int qtd,boolean isProibida) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
