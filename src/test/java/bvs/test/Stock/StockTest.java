@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class StockTest {
-	private bvs.controle.stock stock;
+	private bvs.controle.Stock stock;
 	@Test
 	public void CalculateTheValueInRsTest() {
 		float sumexpected = 0;

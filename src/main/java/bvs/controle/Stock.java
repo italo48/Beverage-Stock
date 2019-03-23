@@ -1,6 +1,6 @@
 package bvs.controle;
 
-public class stock {
+public class Stock {
 	
 	public void CalculateStock() {
 		
