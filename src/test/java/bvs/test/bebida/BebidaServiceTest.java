@@ -1,5 +1,6 @@
 package bvs.test.bebida;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -46,13 +47,13 @@ public class BebidaServiceTest {
 	@Test
 	public void falhaCadastrarBebidaInvalida() {
 		Bebida b6 = new Bebida();
-		assertTrue(!bebidaService.adicionarBebida(b6));
+		assertFalse(bebidaService.adicionarBebida(b6));
 	}
 	
 	@Test
 	public void falhaCadastrarBebidaExistente() {
 		Bebida b7 = new Bebida(7, "Skoll", "Cerveja", 2.99f, (short)34, 150, false);
 		assertTrue(bebidaService.adicionarBebida(b7));
-		assertTrue(!bebidaService.adicionarBebida(b7));
+		assertFalse(bebidaService.adicionarBebida(b7));
 	}
 }
