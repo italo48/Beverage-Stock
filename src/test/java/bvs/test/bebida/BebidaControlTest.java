@@ -1,5 +1,6 @@
 package bvs.test.bebida;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -12,18 +13,18 @@ import bvs.controle.BeverageControl;
 import bvs.controle.InMemoryDB;
 import bvs.entity.Beverage;
 
-public class BebidaServiceTest {
+public class BebidaControlTest {
 	
 	private ArrayList<Beverage> bebidas;
 	private InMemoryDB db;
 	
-	private BeverageControl bebidaService;
+	private BeverageControl bebidaControl;
 	
 	@Before
 	public void setUp() {
 		bebidas  = new ArrayList<Beverage>();
 		db = new InMemoryDB(bebidas);
-		bebidaService = new BeverageControl(db);
+		bebidaControl = new BeverageControl(db);
 		
 		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 8.99f, (short)20, 120, false);
 		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 190.00f,(short)12, 750, true);
@@ -41,19 +42,24 @@ public class BebidaServiceTest {
 //		Entrada definida: objeto b5
 		Beverage b5 = new Beverage(5, "Skoll", "Cerveja", 2.99f, (short)5, 10000, false);
 //		Saida esperada: true
-		assertTrue(bebidaService.adicionarBebida(b5));
+		assertTrue(bebidaControl.addBeverage(b5));
 	}
 	
 	@Test
 	public void falhaCadastrarBebidaInvalida() {
 		Beverage b6 = new Beverage();
-		assertFalse(bebidaService.adicionarBebida(b6));
+		assertFalse(bebidaControl.addBeverage(b6));
 	}
 	
 	@Test
 	public void falhaCadastrarBebidaExistente() {
 		Beverage b7 = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150, false);
-		assertTrue(bebidaService.adicionarBebida(b7));
-		assertFalse(bebidaService.adicionarBebida(b7));
+		assertTrue(bebidaControl.addBeverage(b7));
+		assertFalse(bebidaControl.addBeverage(b7));
+	}
+	
+	@Test
+	public void listarTodasAsBebidas() {
+		assertEquals(bebidaControl.listBeverage().size(), 4);	
 	}
 }

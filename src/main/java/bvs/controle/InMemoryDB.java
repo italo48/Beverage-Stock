@@ -10,12 +10,7 @@ public class InMemoryDB {
 	public InMemoryDB(ArrayList<Beverage> db) {
 		this.db = db;
 	}
-	
-	public boolean add(Beverage b) {
-		return db.add(b);
-	}
-
-	public ArrayList<Beverage> listAll() {
-		return this.db;
+	public  ArrayList<Beverage> getDb() {
+		return db;
 	}
 }
