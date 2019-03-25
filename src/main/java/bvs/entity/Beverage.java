@@ -70,7 +70,7 @@ public class Beverage {
 		this.preco = preco;
 	}
 
-	public boolean isProibida() {
+	public boolean getIsProibida() {
 		return isProibida;
 	}
 

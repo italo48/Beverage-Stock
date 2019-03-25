@@ -12,7 +12,7 @@ public class BeverageControl {
 	}
 	
 	public boolean addBeverage(Beverage b) {
-		if (b.getId() <=  0) {
+		if (b.getId() <=  0 || b.getQtd() < 0 || b.getTeorAlcolico() < 0) {
 			return false;
 		}
 		if(this.db.getDb().indexOf(b) != -1) {
@@ -20,7 +20,39 @@ public class BeverageControl {
 		}
 		return db.getDb().add(b);
 	}
+	
 	public List<Beverage> listBeverage() {
 		return db.getDb();
+	}
+	
+	public boolean delBeverage(long id) {
+		Object a = findBeverage(id);
+		return db.getDb().remove(a);
+	}
+	
+	public Beverage findBeverage(long id) {
+		if(!idIsValid(id)) {
+			return null;
+		}
+		for(Beverage b : db.getDb()) {
+			if(b.getId() == id) {
+				return b;
+			}
+		}
+		return null;
+	}
+	public Beverage upBeverage(long id, Beverage bev) {
+		if(!idIsValid(id)) {
+			return null;
+		}
+		
+		int indexOldBev = db.getDb().indexOf(findBeverage(id));
+		db.getDb().set(indexOldBev, bev);
+		
+		return db.getDb().get(indexOldBev);
+	}
+	
+	private boolean idIsValid(long id) {
+		return id > 0 ? true : false; 
 	}
 }
