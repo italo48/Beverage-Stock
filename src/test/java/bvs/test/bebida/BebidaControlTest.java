@@ -19,7 +19,6 @@ public class BebidaControlTest {
 	
 	private ArrayList<Beverage> beverage;
 	private InMemoryDB db;
-	
 	private BeverageControl beverageControl;
 	
 	@Before
