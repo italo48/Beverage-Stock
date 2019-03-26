@@ -12,7 +12,7 @@ public class BeverageControl {
 	}
 	
 	public boolean addBeverage(Beverage b) {
-		if (b.getId() <=  0 || b.getQtd() < 0 || b.getTeorAlcolico() < 0) {
+		if (b.getId() <=  0 || b.getAmount() < 0 || b.getAlcoholContent() < 0) {
 			return false;
 		}
 		if(this.db.getDb().indexOf(b) != -1) {
