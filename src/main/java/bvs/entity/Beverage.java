@@ -2,40 +2,25 @@ package bvs.entity;
 
 public class Beverage {
 	private long id;
-	private String nome;
-	private String tipo;
-	private float preco;
-	private short teorAlcolico;
-	private int qtd;
-	private boolean isProibida;
+	private String name;
+	private String type;
+	private float price;
+	private short alcoholContent;
+	private int amount;
+	private boolean isProhibited;
 	
 	public Beverage() {
 	}
 
-	public Beverage(long id, String nome, String tipo, float preco, short teorAlc, int qtd,boolean isProibida) {
+	public Beverage(long id, String name, String type, float price, short alcoholContent, int amount,
+			boolean isProhibited) {
 		this.id = id;
-		this.nome = nome;
-		this.tipo = tipo;
-		this.preco = preco;
-		this.teorAlcolico = teorAlc;
-		this.qtd = qtd;
-		this.isProibida = isProibida;
-	}
-
-	public int getQtd() {
-		return qtd;
-	}
-
-	public void setQtd(int qtd) {
-		this.qtd = qtd;
-	}
-	
-	public short getTeorAlcolico() {
-		return teorAlcolico;
-	}
-
-	public void setTeorAlcolico(short teorAlcolico) {
-		this.teorAlcolico = teorAlcolico;
+		this.name = name;
+		this.type = type;
+		this.price = price;
+		this.alcoholContent = alcoholContent;
+		this.amount = amount;
+		this.isProhibited = isProhibited;
 	}
 
 	public long getId() {
@@ -46,35 +31,51 @@ public class Beverage {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getType() {
+		return type;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public float getPreco() {
-		return preco;
+	public float getPrice() {
+		return price;
 	}
 
-	public void setPreco(float preco) {
-		this.preco = preco;
+	public void setPrice(float price) {
+		this.price = price;
 	}
 
-	public boolean isProibida() {
-		return isProibida;
+	public short getAlcoholContent() {
+		return alcoholContent;
 	}
 
-	public void setProibida(boolean isProibida) {
-		this.isProibida = isProibida;
+	public void setAlcoholContent(short alcoholContent) {
+		this.alcoholContent = alcoholContent;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public boolean isProhibited() {
+		return isProhibited;
+	}
+
+	public void setProhibited(boolean isProhibited) {
+		this.isProhibited = isProhibited;
 	}
 }
