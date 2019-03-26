@@ -40,4 +40,9 @@ public class StockTest {
 		byte expecteds = 2;
 		assertEquals(expecteds, stock.LevelStock());
 	}
+	@Test
+	public void LevelBeverageTest() {
+		short expecteds = 50;
+		assertEquals(expecteds, stock.LevelBeverage(1));
+	}
 }
