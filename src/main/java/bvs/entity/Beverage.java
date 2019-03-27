@@ -7,19 +7,21 @@ public class Beverage {
 	private float price;
 	private short alcoholContent;
 	private int amount;
+	private int loss;
 	private boolean isProhibited;
 	
 	public Beverage() {
 	}
 
 	public Beverage(long id, String name, String type, float price, short alcoholContent, int amount,
-			boolean isProhibited) {
+			int loss, boolean isProhibited) {
 		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.price = price;
 		this.alcoholContent = alcoholContent;
 		this.amount = amount;
+		this.loss = loss;
 		this.isProhibited = isProhibited;
 	}
 
@@ -77,5 +79,13 @@ public class Beverage {
 
 	public void setProhibited(boolean isProhibited) {
 		this.isProhibited = isProhibited;
+	}
+
+	public int getLoss() {
+		return loss;
+	}
+
+	public void setLoss(int perdas) {
+		this.loss = perdas;
 	}
 }

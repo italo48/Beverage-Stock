@@ -27,10 +27,10 @@ public class BebidaControlTest {
 		db = new InMemoryDB(beverage);
 		beverageControl = new BeverageControl(db);
 		
-		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 8.99f, (short)20, 120, false);
-		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 190.00f,(short)12, 750, true);
-		Beverage b3 = new Beverage(3, "Jack Daniels", "Whysky", 48.99f, (short)20,1522, false);
-		Beverage b4 = new Beverage(4, "Fogo santo", "Cachaça", 18.99f, (short)20,2250, false);
+		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 8.99f, (short)20, 120, 0, false);
+		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 190.00f,(short)12, 750, 0, true);
+		Beverage b3 = new Beverage(3, "Jack Daniels", "Whysky", 48.99f, (short)20,1522, 0, false);
+		Beverage b4 = new Beverage(4, "Fogo santo", "Cachaça", 18.99f, (short)20,2250, 0, false);
 		
 		
 		beverage.add(b1);
@@ -42,7 +42,7 @@ public class BebidaControlTest {
 	@Test
 	public void sucessAccessBeverage() {
 //		Entrada definida: objeto b5
-		Beverage b5 = new Beverage(5, "Skoll", "Cerveja", 2.99f, (short)5, 10000, false);
+		Beverage b5 = new Beverage(5, "Skoll", "Cerveja", 2.99f, (short)5, 10000, 0, false);
 //		Saida esperada: true
 		assertTrue(beverageControl.addBeverage(b5));
 	}
@@ -55,7 +55,7 @@ public class BebidaControlTest {
 	
 	@Test
 	public void failAccessBeverageExistente() {
-		Beverage b7 = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150, false);
+		Beverage b7 = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150, 0, false);
 		assertTrue(beverageControl.addBeverage(b7));
 		assertFalse(beverageControl.addBeverage(b7));
 	}
@@ -89,7 +89,7 @@ public class BebidaControlTest {
 	@Test
 	public void successPersistChangesInBeverage() {
 		Beverage oldBev = db.getDb().get(0);
-		Beverage newBev = new Beverage(10, "Heiniken", "Cerveja", 4.99f, (short)10, 10000, false);
+		Beverage newBev = new Beverage(10, "Heiniken", "Cerveja", 4.99f, (short)10, 10000, 0, false);
 		
 		assertEquals(newBev, beverageControl.upBeverage(oldBev.getId(), newBev));
 	}
@@ -97,7 +97,7 @@ public class BebidaControlTest {
 	@Test
 	public void successAltBeverage() {
 		Beverage oldBev = db.getDb().get(0);
-		Beverage newBev = new Beverage(11, "Boemia", "Cerveja", 5.99f, (short)20, 1000, false);
+		Beverage newBev = new Beverage(11, "Boemia", "Cerveja", 5.99f, (short)20, 1000, 0, false);
 		
 		beverageControl.upBeverage(oldBev.getId(), newBev);
 		
@@ -107,7 +107,7 @@ public class BebidaControlTest {
 	@Test
 	public void successRealChangeBeverage() {
 		Beverage oldBev = db.getDb().get(0);
-		Beverage newBev = new Beverage(11, "Itaipava", "Cerveja", 1.39f, (short)20, 1000, false);
+		Beverage newBev = new Beverage(11, "Itaipava", "Cerveja", 1.39f, (short)20, 1000, 0, false);
 		int oldLen = db.getDb().size();
 		
 		beverageControl.upBeverage(oldBev.getId(), newBev);

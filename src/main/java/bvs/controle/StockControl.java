@@ -4,23 +4,23 @@ import bvs.entity.Beverage;
 
 public class StockControl{
 	
-	private InMemoryDB b;
+	private InMemoryDB bank;
 	
 	public StockControl(InMemoryDB db) {
-		this.b = db;
+		this.bank = db;
 	}
 	public float CalculateStock() {
 		float sum = 0;
-		for (Beverage h : b.getDb()) {
-			sum += h.getPrice();
+		for (Beverage bebida : bank.getDb()) {
+			sum += bebida.getPrice();
 			
 		}return sum;
 	}
 	public byte LevelStock() {
 		byte sum = 0;
-		for (Beverage h : b.getDb()) {
-			sum += h.getAmount();
-			
+		for (Beverage bebida : bank.getDb()) {
+			sum += bebida.getAmount();
+			sum -=bebida.getLoss();
 		}
 		if (sum > 100) {
 			//System.out.println("cheio");
@@ -38,12 +38,19 @@ public class StockControl{
 	public short LevelBeverage(int id) {
 		double total = LevelStock();
 		double result = 0;
-		for (Beverage h : b.getDb()) {
-			if (h.getId() == id) {
-				result = (h.getAmount()/total) * 100;
+		for (Beverage bebida : bank.getDb()) {
+			if (bebida.getId() == id) {
+				result = ((bebida.getAmount() - bebida.getLoss())/total) * 100;
 			}
 		}
 		return (short) result;
+	}
+	public double ValueStockLoss() {
+		int sum = 0;
+		for (Beverage bebida : bank.getDb()) {
+			sum +=bebida.getLoss();
+		}
+		return sum;
 	}
 	
 }
