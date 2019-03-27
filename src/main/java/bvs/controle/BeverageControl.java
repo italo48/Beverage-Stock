@@ -7,18 +7,18 @@ import bvs.entity.Beverage;
 public class BeverageControl {
 	private InMemoryDB db;
 
-	public BeverageControl(InMemoryDB b) {
-		this.db = b;
+	public BeverageControl(InMemoryDB datab) {
+		this.db = datab;
 	}
 	
-	public boolean addBeverage(Beverage b) {
-		if (b.getId() <=  0 || b.getAmount() < 0 || b.getAlcoholContent() < 0) {
+	public boolean addBeverage(Beverage bev) {
+		if (!beverageIsValid(bev)) {
 			return false;
 		}
-		if(this.db.getDb().indexOf(b) != -1) {
+		if(this.db.getDb().indexOf(bev) != -1) {
 			return false;
 		}
-		return db.getDb().add(b);
+		return db.getDb().add(bev);
 	}
 	
 	public List<Beverage> listBeverage() {
@@ -31,7 +31,7 @@ public class BeverageControl {
 	}
 	
 	public Beverage findBeverage(long id) {
-		if(!idIsValid(id)) {
+		if(id < 0) {
 			return null;
 		}
 		for(Beverage b : db.getDb()) {
@@ -42,7 +42,7 @@ public class BeverageControl {
 		return null;
 	}
 	public Beverage upBeverage(long id, Beverage bev) {
-		if(!idIsValid(id)) {
+		if(!beverageIsValid(bev)) {
 			return null;
 		}
 		
@@ -52,7 +52,12 @@ public class BeverageControl {
 		return db.getDb().get(indexOldBev);
 	}
 	
-	private boolean idIsValid(long id) {
-		return id > 0 ? true : false; 
+	private boolean beverageIsValid(Beverage bev) {
+		if (bev.getId() <=  0 || bev.getAmount() < 0 || bev.getAlcoholContent() < 0
+				|| bev.getLoss() > bev.getAmount() || bev.getName().equals("") 
+				|| bev.getType().equals("") || bev.getPrice() == 0.0) {
+			return false;
+		}
+		return true;
 	}
 }
