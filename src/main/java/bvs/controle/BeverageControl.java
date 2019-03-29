@@ -9,6 +9,7 @@ public class BeverageControl {
 
 	public BeverageControl(InMemoryDB datab) {
 		this.db = datab;
+		this.setUP();
 	}
 	
 	public boolean addBeverage(Beverage bev) {
@@ -59,5 +60,27 @@ public class BeverageControl {
 			return false;
 		}
 		return true;
+	}
+	
+	public Beverage toBeverage(String beverage) {
+		String a[] = beverage.split(",");
+		long id = Integer.parseInt(a[0]);
+		float price = Float.parseFloat(a[3]);
+		int ac = Integer.parseInt(a[4]);
+		int qtd = Integer.parseInt(a[5]);
+		
+		Beverage bev = new Beverage(id, a[1], a[2], price, (short)ac, qtd);
+		if(beverageIsValid(bev)) {
+			return bev;
+		}
+		return null;
+	}
+	
+	private void setUP() {
+		this.addBeverage(new Beverage(1, "Itaipava", "Cerveja", 1.39f, (short)2, 50000));
+		this.addBeverage(new Beverage(2, "Ypioca Prata", "Cachaça", 4.79f, (short)30, 5000));
+		Beverage absinto = new Beverage(3, "Green Demon", "Absinto", 150.50f, (short)72, 50);
+		absinto.setProhibited(true);
+		this.addBeverage(absinto);
 	}
 }

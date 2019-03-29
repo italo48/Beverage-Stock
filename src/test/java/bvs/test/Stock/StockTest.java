@@ -10,24 +10,24 @@ import org.junit.Test;
 import bvs.controle.InMemoryDB;
 import bvs.controle.StockControl;
 import bvs.entity.Beverage;
-import junit.framework.Assert;
 
 public class StockTest {
 	private bvs.controle.StockControl stock;
-	private ArrayList<Beverage> bebidas;
+	private ArrayList<Beverage> beverage;
 	private InMemoryDB db;
 	
 	@Before
 	public void setUp() {
-		bebidas  = new ArrayList<Beverage>();
-		db = new InMemoryDB(bebidas);
+		beverage = new ArrayList<>();
+		db = new InMemoryDB(beverage);
 		stock = new StockControl(db);
 		
-		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 2.50f, (short)20, 2, 1, false);
-		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 3.40f,(short)12, 1, 0, true);
+		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 2.50f, (short)20, 2);
+		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 3.40f,(short)12, 0);
+		b2.setProhibited(true);
 		
-		bebidas.add(b1);
-		bebidas.add(b2);
+		beverage.add(b1);
+		beverage.add(b2);
 	}
 	@Test
 	public void CalculateTheValueInRsTest() {

@@ -23,14 +23,15 @@ public class BebidaControlTest {
 	
 	@Before
 	public void setUp() {
-		beverage  = new ArrayList<Beverage>();
+		beverage = new ArrayList<>();
 		db = new InMemoryDB(beverage);
 		beverageControl = new BeverageControl(db);
 		
-		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 8.99f, (short)20, 120, 0, false);
-		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 190.00f,(short)12, 750, 0, true);
-		Beverage b3 = new Beverage(3, "Jack Daniels", "Whysky", 48.99f, (short)20,1522, 0, false);
-		Beverage b4 = new Beverage(4, "Fogo santo", "Cachaça", 18.99f, (short)20,2250, 0, false);
+		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 8.99f, (short)20, 120);
+		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 190.00f,(short)12, 750);
+		b2.setProhibited(true);
+		Beverage b3 = new Beverage(3, "Jack Daniels", "Whysky", 48.99f, (short)20,1522);
+		Beverage b4 = new Beverage(4, "Fogo santo", "Cachaça", 18.99f, (short)20,2250);
 		
 		
 		beverage.add(b1);
@@ -41,7 +42,7 @@ public class BebidaControlTest {
 	
 	@Test
 	public void sucessRegisterBeverage() {
-		Beverage b5 = new Beverage(5, "Skoll", "Cerveja", 2.99f, (short)5, 10000, 0, false);
+		Beverage b5 = new Beverage(5, "Skoll", "Cerveja", 2.99f, (short)5, 10000);
 		assertTrue(beverageControl.addBeverage(b5));
 	}
 	
@@ -53,20 +54,21 @@ public class BebidaControlTest {
 	
 	@Test
 	public void failRegisterBeverageWithWithParametersInvalid() {
-		Beverage bFalse = new Beverage(1, "", "",0.0f,(short)0, 0, 0, false);
+		Beverage bFalse = new Beverage(1, "", "",0.0f,(short)0, 0);
 		assertFalse(beverageControl.addBeverage(bFalse));
 	}
 	
 	@Test
 	public void failRegisterBeverageSelf() {
-		Beverage b7 = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150, 0, false);
+		Beverage b7 = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150);
 		assertTrue(beverageControl.addBeverage(b7));
 		assertFalse(beverageControl.addBeverage(b7));
 	}
 	
 	@Test
 	public void failRegisterBeverageWithLossGreaterThenAmount() {
-		Beverage bTrab = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150, 1500, false);
+		Beverage bTrab = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150);
+		bTrab.setLoss(1500);
 		assertFalse(beverageControl.addBeverage(bTrab));
 	}
 	
@@ -99,7 +101,7 @@ public class BebidaControlTest {
 	@Test
 	public void successUpdateBeverage() {
 		Beverage oldBev = db.getDb().get(0);
-		Beverage newBev = new Beverage(10, "Heiniken", "Cerveja", 4.99f, (short)10, 10000, 0, false);
+		Beverage newBev = new Beverage(10, "Heiniken", "Cerveja", 4.99f, (short)10, 10000);
 		
 		assertEquals(newBev, beverageControl.upBeverage(oldBev.getId(), newBev));
 	}
@@ -107,7 +109,7 @@ public class BebidaControlTest {
 	@Test
 	public void successAltBeverage() {
 		Beverage oldBev = db.getDb().get(0);
-		Beverage newBev = new Beverage(11, "Boemia", "Cerveja", 5.99f, (short)20, 1000, 0, false);
+		Beverage newBev = new Beverage(11, "Boemia", "Cerveja", 5.99f, (short)20, 1000);
 		
 		beverageControl.upBeverage(oldBev.getId(), newBev);
 		

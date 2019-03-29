@@ -13,16 +13,16 @@ public class Beverage {
 	public Beverage() {
 	}
 
-	public Beverage(long id, String name, String type, float price, short alcoholContent, int amount,
-			int loss, boolean isProhibited) {
+	public Beverage(long id, String name, String type, float price, short alcoholContent, 
+			int amount) {
 		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.price = price;
 		this.alcoholContent = alcoholContent;
 		this.amount = amount;
-		this.loss = loss;
-		this.isProhibited = isProhibited;
+		this.loss = 0;
+		this.isProhibited = false;
 	}
 
 	public long getId() {
