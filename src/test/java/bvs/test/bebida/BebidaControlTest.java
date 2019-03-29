@@ -74,7 +74,7 @@ public class BebidaControlTest {
 	
 	@Test
 	public void listAllBeverage() {
-		assertEquals(beverageControl.listBeverage().size(), 4);	
+		assertEquals(beverageControl.listBeverage().size(), 7);	
 	}
 	
 	@Test
