@@ -45,8 +45,8 @@ public class UI {
 		System.out.println();
 		System.out.println("0 - Sair");
 		System.out.println("1 - Calcular o valor do estoque em R$");
-		System.out.println("2 - Calcular o level do estoque");
-		System.out.println("3 - Calcular o level de uma bebida");
+		System.out.println("2 - Calcular o nivel do estoque");
+		System.out.println("3 - Calcular o nivel de uma bebida");
 		System.out.println("4 - Calcular perdas");
 		System.out.println();
 		this.askOp();
@@ -77,10 +77,11 @@ public class UI {
 		System.out.println();
 		System.out.println("ID: " + bev.getId());
 		System.out.println("Nome: " + bev.getName());
-		System.out.println("Preço: R$" + bev.getPrice());
 		System.out.println("Tipo: " + bev.getType());
+		System.out.println("Preço: R$" + bev.getPrice());
 		System.out.println("Teor Alcólico: " + bev.getAlcoholContent() + "%");
 		System.out.println("Quantidade: " + bev.getAmount() + " unid");
+		System.out.println("Perdas: " + bev.getLoss());
 		if (bev.isProhibited()) {
 			System.out.println("Proibida: sim");
 		} else {
@@ -209,5 +210,40 @@ public class UI {
 	public void askOp() {
 		System.out.println();
 		System.out.print(">>>>>>: ");
+	}
+
+	public void calculateStock() {
+		this.logo();
+		System.out.println();
+		System.out.println("\t +-----------------+");
+		System.out.println("\t |   Stock Value   |");
+		System.out.println("\t +-----------------+");
+		System.out.print("O valor total do estoque é: ");		
+	}
+	public void levelStock() {
+		this.logo();
+		System.out.println();
+		System.out.println("\t +-----------------+");
+		System.out.println("\t |   Stock Level   |");
+		System.out.println("\t +-----------------+");
+		System.out.print("O nivel total do estoque é: ");		
+	}
+
+	public void levelBeverage() {
+		this.logo();
+		System.out.println();
+		System.out.println("\t +-----------------+");
+		System.out.println("\t | Beverage  Level |");
+		System.out.println("\t +-----------------+");
+		System.out.print("O nivel total da bebida é: ");
+	}
+
+	public void valueStockLoss() {
+		this.logo();
+		System.out.println();
+		System.out.println("\t +-----------------+");
+		System.out.println("\t |    Value Lost   |");
+		System.out.println("\t +-----------------+");
+		System.out.print("O valor total perdido é: ");
 	}
 }
