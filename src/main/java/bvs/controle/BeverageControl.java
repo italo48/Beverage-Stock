@@ -61,15 +61,15 @@ public class BeverageControl {
 		}
 		return true;
 	}
-	
+//	Ganbs
 	public Beverage toBeverage(String beverage) {
-		String a[] = beverage.split(",");
-		long id = Integer.parseInt(a[0]);
-		float price = Float.parseFloat(a[3]);
-		int ac = Integer.parseInt(a[4]);
-		int qtd = Integer.parseInt(a[5]);
+		String bevStringFormat[] = beverage.split(",");
+		long id = Integer.parseInt(bevStringFormat[0]);
+		float price = Float.parseFloat(bevStringFormat[3]);
+		int ac = Integer.parseInt(bevStringFormat[4]);
+		int qtd = Integer.parseInt(bevStringFormat[5]);
 		
-		Beverage bev = new Beverage(id, a[1], a[2], price, (short)ac, qtd);
+		Beverage bev = new Beverage(id, bevStringFormat[1], bevStringFormat[2], price, (short)ac, qtd);
 		if(beverageIsValid(bev)) {
 			return bev;
 		}
