@@ -21,8 +21,8 @@ public class BeverageStockApp {
 	public void run() {
 		beverageDB = new ArrayList<>();
 		db = new InMemoryDB(beverageDB);
-		bevApp = new BeverageControl(db, stockApp);
 		stockApp = new StockControl(db);
+		bevApp = new BeverageControl(db, stockApp);
 		userInterface = new UI();
 		inputApp = new Scanner(System.in);
 
@@ -30,7 +30,6 @@ public class BeverageStockApp {
 		boolean controloop = true;
 
 		do {
-//			userInterface.logo();
 			userInterface.appMenu();
 			op = inputApp.nextInt();
 			if (op == 0) {
@@ -190,27 +189,22 @@ public class BeverageStockApp {
 
 			} else if (op == 1) {
 //				Calcular o valor do estoque em R$
-				userInterface.calculateStock();
-				System.out.println(stockApp.CalculateStock());
+				userInterface.calculateStock(stockApp.CalculateStock());
 			} else if (op == 2) {
 //				ver level do stock
-				userInterface.levelStock();
-				System.out.println(stockApp.LevelStock());
+				userInterface.levelStock(stockApp.LevelStock());
 			} else if (op == 3) {
 				//ver level da bebida
 				userInterface.askId();
 				int id = inputApp.nextInt();
 				if (id != 0) {
-					userInterface.levelBeverage();
-					stockApp.LevelBeverage(id);
+					userInterface.levelBeverage(stockApp.LevelBeverage(id));
 				}else {
 					userInterface.errorInput();
 				}
 			} else if (op == 4) {
 				// calcular perdas
-				userInterface.valueStockLoss();
-				stockApp.ValueStockLoss();
-				
+				userInterface.valueStockLoss(stockApp.ValueStockLoss());
 			} else {
 				this.userInterface.errorInput();
 			}
