@@ -6,17 +6,22 @@ import bvs.entity.Beverage;
 
 public class BeverageControl {
 	private InMemoryDB db;
+	private StockControl stock;
 
-	public BeverageControl(InMemoryDB datab) {
+	public BeverageControl(InMemoryDB datab, StockControl stock) {
 		this.db = datab;
-		this.setUP();
+		this.stock = stock;
+//		this.setUP();
 	}
 	
 	public boolean addBeverage(Beverage bev) {
 		if (!beverageIsValid(bev)) {
 			return false;
 		}
-		if(this.db.getDb().indexOf(bev) != -1) {
+		if (bev.getPrice()+stock.total() > 1500) {
+			return false;
+		}
+		if (this.db.getDb().indexOf(bev) != -1) {
 			return false;
 		}
 		return db.getDb().add(bev);
@@ -77,8 +82,8 @@ public class BeverageControl {
 	}
 	
 	private void setUP() {
-		this.addBeverage(new Beverage(1, "Itaipava", "Cerveja", 1.39f, (short)2, 50000));
-		this.addBeverage(new Beverage(2, "Ypioca Prata", "Cachaça", 4.79f, (short)30, 5000));
+		this.addBeverage(new Beverage(1, "Itaipava", "Cerveja", 1.39f, (short)2, 600));
+		this.addBeverage(new Beverage(2, "Ypioca Prata", "Cachaça", 4.79f, (short)30, 500));
 		Beverage absinto = new Beverage(3, "Green Demon", "Absinto", 150.50f, (short)72, 50);
 		absinto.setProhibited(true);
 		this.addBeverage(absinto);

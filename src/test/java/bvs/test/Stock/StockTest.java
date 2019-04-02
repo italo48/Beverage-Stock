@@ -22,8 +22,8 @@ public class StockTest {
 		db = new InMemoryDB(beverage);
 		stock = new StockControl(db);
 		
-		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 2.50f, (short)20, 2);
-		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 3.40f,(short)12, 0);
+		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 2.50f, (short)20, 375);
+		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 3.40f,(short)12, 375);
 		b2.setProhibited(true);
 		
 		beverage.add(b1);
@@ -37,7 +37,7 @@ public class StockTest {
 	@Test
 	public void LevelStockTest() {
 		
-		byte expecteds = 2;
+		byte expecteds = 50;
 		assertEquals(expecteds, stock.LevelStock());
 	}
 	@Test
@@ -47,7 +47,7 @@ public class StockTest {
 	}
 	@Test
 	public void ValueStockLossTest() {
-		double expecteds = 1;
+		double expecteds = 0;
 		assertEquals(expecteds, stock.ValueStockLoss(), 0.00f);
 	}
 }
