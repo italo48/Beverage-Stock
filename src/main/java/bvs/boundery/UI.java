@@ -212,38 +212,38 @@ public class UI {
 		System.out.print(">>>>>>: ");
 	}
 
-	public void calculateStock() {
+	public void calculateStock(float value) {
 		this.logo();
 		System.out.println();
 		System.out.println("\t +-----------------+");
 		System.out.println("\t |   Stock Value   |");
 		System.out.println("\t +-----------------+");
-		System.out.print("O valor total do estoque é: ");		
+		System.out.print("O valor total do estoque é: " + value);		
 	}
-	public void levelStock() {
+	public void levelStock(byte value) {
 		this.logo();
 		System.out.println();
 		System.out.println("\t +-----------------+");
 		System.out.println("\t |   Stock Level   |");
 		System.out.println("\t +-----------------+");
-		System.out.print("O nivel total do estoque é: ");		
+		System.out.print("O nivel total do estoque é: " + value);		
 	}
 
-	public void levelBeverage() {
+	public void levelBeverage(short value ) {
 		this.logo();
 		System.out.println();
 		System.out.println("\t +-----------------+");
 		System.out.println("\t | Beverage  Level |");
 		System.out.println("\t +-----------------+");
-		System.out.print("O nivel total da bebida é: ");
+		System.out.print("O nivel total da bebida é: " + value);
 	}
 
-	public void valueStockLoss() {
+	public void valueStockLoss(double value) {
 		this.logo();
 		System.out.println();
 		System.out.println("\t +-----------------+");
 		System.out.println("\t |    Value Lost   |");
 		System.out.println("\t +-----------------+");
-		System.out.print("O valor total perdido é: ");
+		System.out.print("O valor total perdido é: " + value);
 	}
 }

@@ -18,7 +18,7 @@ public class BeverageControl {
 		if (!beverageIsValid(bev)) {
 			return false;
 		}
-		if (bev.getPrice()+stock.total() > 1500) {
+		if (bev.getPrice() + stock.total() > 1500) {
 			return false;
 		}
 		if (this.db.getDb().indexOf(bev) != -1) {
