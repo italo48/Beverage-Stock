@@ -48,6 +48,7 @@ public class UI {
 		System.out.println("2 - Calcular o nivel do estoque");
 		System.out.println("3 - Calcular o nivel de uma bebida");
 		System.out.println("4 - Calcular perdas");
+		System.out.println("5 - Cadastrar perdas");
 		System.out.println();
 		this.askOp();
 	}
@@ -211,6 +212,10 @@ public class UI {
 		System.out.println();
 		System.out.print(">>>>>>: ");
 	}
+	public void askQtd() {
+		System.out.println();
+		System.out.print("Digite a quantidade: ");
+	}
 
 	public void calculateStock(float value) {
 		this.logo();
@@ -244,6 +249,13 @@ public class UI {
 		System.out.println("\t +-----------------+");
 		System.out.println("\t |    Value Lost   |");
 		System.out.println("\t +-----------------+");
-		System.out.print("O valor total perdido é: " + value);
+		System.out.print("O total perdido é: " + value);
+	}
+	public void regLost() {
+		this.logo();
+		System.out.println();
+		System.out.println("\t +-----------------+");
+		System.out.println("\t |    Value Lost   |");
+		System.out.println("\t +-----------------+");
 	}
 }

@@ -205,6 +205,18 @@ public class BeverageStockApp {
 			} else if (op == 4) {
 				// calcular perdas
 				userInterface.valueStockLoss(stockApp.ValueStockLoss());
+			} else if (op == 5) {
+				// cadastrar perdas
+				userInterface.askId();
+				int id = inputApp.nextInt();
+				userInterface.askQtd();
+				int qtdLost = inputApp.nextInt();
+				if (stockApp.RegLoss(id, qtdLost)) {
+					userInterface.regLost();
+					userInterface.selectFailOrSuccessCRUD(3);
+				}else {
+					userInterface.selectFailOrSuccessCRUD(6);
+				}
 			} else {
 				this.userInterface.errorInput();
 			}

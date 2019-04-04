@@ -24,7 +24,7 @@ public class StockTest {
 		
 		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 2.50f, (short)20, 375);
 		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 3.40f,(short)12, 375);
-		b2.setProhibited(true);
+		b1.setLoss(1);
 		
 		beverage.add(b1);
 		beverage.add(b2);
@@ -47,7 +47,12 @@ public class StockTest {
 	}
 	@Test
 	public void ValueStockLossTest() {
-		double expecteds = 0;
+		double expecteds = 1;
 		assertEquals(expecteds, stock.ValueStockLoss(), 0.00f);
+	}
+	@Test
+	public void RegLostTest() {
+		stock.RegLoss(1, 300);
+		assertEquals(300, db.getDb().get(0).getLoss());
 	}
 }

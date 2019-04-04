@@ -3,7 +3,6 @@ package bvs.controle;
 import bvs.entity.Beverage;
 
 public class StockControl{
-	
 	private InMemoryDB bank;
 	public StockControl(InMemoryDB db) {
 		this.bank = db;
@@ -54,6 +53,16 @@ public class StockControl{
 			sum +=bebida.getLoss();
 		}
 		return sum;
+	}
+	public boolean RegLoss(long id, int qtdLost) {
+		for (Beverage bebida : bank.getDb()) {
+			if (bebida.getId() == id) {
+				if (bebida.getAmount() > qtdLost) {
+					bebida.setLoss(qtdLost);
+					return true;
+				}
+			}
+		}return false;
 	}
 	
 }
