@@ -115,4 +115,8 @@ hs_err_pid*
 #dir 
 target/
 
+#DCL
+dcldata/
+architecture.dcl
+
 # End of https://www.gitignore.io/api/git,java,eclipse
