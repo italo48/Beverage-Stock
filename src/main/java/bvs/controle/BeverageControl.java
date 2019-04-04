@@ -11,7 +11,6 @@ public class BeverageControl {
 	public BeverageControl(InMemoryDB datab, StockControl stock) {
 		this.db = datab;
 		this.stock = stock;
-//		this.setUP();
 	}
 	
 	public boolean addBeverage(Beverage bev) {
@@ -79,13 +78,5 @@ public class BeverageControl {
 			return bev;
 		}
 		return null;
-	}
-	
-	private void setUP() {
-		this.addBeverage(new Beverage(1, "Itaipava", "Cerveja", 1.39f, (short)2, 600));
-		this.addBeverage(new Beverage(2, "Ypioca Prata", "Cachaça", 4.79f, (short)30, 500));
-		Beverage absinto = new Beverage(3, "Green Demon", "Absinto", 150.50f, (short)72, 50);
-		absinto.setProhibited(true);
-		this.addBeverage(absinto);
 	}
 }

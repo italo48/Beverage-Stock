@@ -5,5 +5,5 @@ module Entity: bvs.entity.**
 module App: bvs.BeverageStockApp.BeverageStockApp
 
 %rules def
-%View cannot-access Entity
+View cannot-access Entity
 App must-create Control, View  
