@@ -11,7 +11,7 @@ public class BeverageControl {
 	public BeverageControl(InMemoryDB datab, StockControl stock) {
 		this.db = datab;
 		this.stock = stock;
-//		this.setUP();
+		this.setUP();
 	}
 	
 	public boolean addBeverage(Beverage bev) {
