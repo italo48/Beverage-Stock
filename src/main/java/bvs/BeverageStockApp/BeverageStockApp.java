@@ -63,20 +63,22 @@ public class BeverageStockApp {
 				userInterface.registerBev();
 				bev = inputApp.next();
 
-				Beverage beverage = bevApp.toBeverage(bev);
-
-				bev = "";
-
-				userInterface.askIsProhibited();
-				bev = inputApp.next();
-				if (bev.equals("S") || bev.equals("s")) {
-					beverage.setProhibited(true);
-				}
-
-				if (bevApp.addBeverage(beverage)) {
-					userInterface.selectFailOrSuccessCRUD(1);
-				} else {
-					userInterface.selectFailOrSuccessCRUD(4);
+				try{
+					Beverage beverage = bevApp.toBeverage(bev);
+					bev = "";
+					userInterface.askIsProhibited();
+					bev = inputApp.next();
+					if (bev.equals("S") || bev.equals("s")) {
+						beverage.setProhibited(true);
+					}
+					
+					if (bevApp.addBeverage(beverage)) {
+						userInterface.selectFailOrSuccessCRUD(1);
+					} else {
+						userInterface.selectFailOrSuccessCRUD(4);
+					}
+				} catch(Exception e) {
+					userInterface.errorParamns();
 				}
 
 			} else if (op == 2) {

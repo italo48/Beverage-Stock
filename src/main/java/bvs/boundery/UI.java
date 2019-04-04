@@ -181,7 +181,13 @@ public class UI {
 		System.err.println("Bebida não encontrada");
 		System.out.println();
 	}
-
+	
+	public void errorParamns () {
+		System.out.println();
+		System.out.println("Erro em algum campo.");
+		System.out.println();
+	}
+	
 	public void bye() {
 		System.out.println();
 		System.out.println("\t +-------+");
