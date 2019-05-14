@@ -1,6 +1,11 @@
 package bvs.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Beverage {
+	@Id
 	private long id;
 	private String name;
 	private String type;
