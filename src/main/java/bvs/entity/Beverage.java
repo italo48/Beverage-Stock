@@ -93,4 +93,10 @@ public class Beverage {
 	public void setLoss(int perdas) {
 		this.loss = perdas;
 	}
+
+	@Override
+	public String toString() {
+		return "Beverage [id=" + id + ", name=" + name + ", type=" + type + ", price=" + price + ", alcoholContent="
+				+ alcoholContent + ", amount=" + amount + ", loss=" + loss + ", isProhibited=" + isProhibited + "]";
+	}
 }
