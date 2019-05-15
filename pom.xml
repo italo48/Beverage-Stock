@@ -20,8 +20,11 @@
 	</properties>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> cbad23d3abe2addb5449ad8b8ed11dd6b3ab7efb
 =======
 >>>>>>> cbad23d3abe2addb5449ad8b8ed11dd6b3ab7efb
 =======
@@ -44,6 +47,7 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.1-901-1.jdbc4</version>
 		</dependency>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	    <dependency>
@@ -79,6 +83,21 @@
 <<<<<<< HEAD
 >>>>>>> cbad23d3abe2addb5449ad8b8ed11dd6b3ab7efb
 =======
+>>>>>>> cbad23d3abe2addb5449ad8b8ed11dd6b3ab7efb
+=======
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 >>>>>>> cbad23d3abe2addb5449ad8b8ed11dd6b3ab7efb
 	<build>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
