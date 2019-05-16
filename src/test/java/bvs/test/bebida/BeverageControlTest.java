@@ -134,13 +134,14 @@ public class BeverageControlTest {
 		assertEquals(newBev, beverageControl.upBeverage(oldBev.getId(), newBev));
 	}
 	
-//	@Test
-//	public void successAltBeverage() {
-//		Beverage oldBev = bevDAO.listAllBeverage().get(0);
-//		Beverage newBev = new Beverage(11, "Boemia", "Cerveja", 5.99f, (short)20, 1000);
-//		
-//		beverageControl.upBeverage(oldBev.getId(), newBev);
-//		
-//		assertNotEquals(oldBev, bevDAO.listAllBeverage().indexOf(oldBev));
-//	}
+	@Test
+	public void successAltBeverage() {
+		Beverage oldBev = bevDAO.listAllBeverage().get(0);
+		Beverage newBev = new Beverage(11, "Boemia", "Cerveja", 5.99f, (short)20, 1000);
+		Mockito.when(bevDAO.alterBerverage(newBev)).thenReturn(true);
+
+		beverageControl.upBeverage(oldBev.getId(), newBev);
+		
+		assertNotEquals(oldBev, bevDAO.listAllBeverage().indexOf(oldBev));
+	}
 }
