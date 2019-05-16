@@ -1,17 +1,17 @@
 package bvs.BeverageStockApp;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import bvs.boundery.UI;
+import bvs.config.DBConfig;
 import bvs.controle.BeverageControl;
-import bvs.controle.InMemoryDB;
 import bvs.controle.StockControl;
+import bvs.dao.BeverageDAO;
 import bvs.entity.Beverage;
 
 public class BeverageStockApp {
-	private ArrayList<Beverage> beverageDB;
-	private InMemoryDB db;
+	private DBConfig dbConn;
+	private BeverageDAO db;
 	private BeverageControl bevApp;
 	private StockControl stockApp;
 	private UI userInterface;
@@ -19,8 +19,8 @@ public class BeverageStockApp {
 	private Scanner inputApp;
 
 	public void run() {
-		beverageDB = new ArrayList<>();
-		db = new InMemoryDB(beverageDB);
+		dbConn = new DBConfig();
+		db = new BeverageDAO(dbConn);
 		stockApp = new StockControl(db);
 		bevApp = new BeverageControl(db, stockApp);
 		userInterface = new UI();
