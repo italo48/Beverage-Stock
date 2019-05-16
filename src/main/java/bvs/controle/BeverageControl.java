@@ -2,14 +2,16 @@ package bvs.controle;
 
 import java.util.List;
 
+import bvs.dao.BeverageDAO;
 import bvs.entity.Beverage;
 
 public class BeverageControl {
-	private InMemoryDB db;
-	private StockControl stock;
 
-	public BeverageControl(InMemoryDB datab, StockControl stock) {
-		this.db = datab;
+	private StockControl stock;
+	private BeverageDAO beveDAO;
+
+	public BeverageControl(BeverageDAO datab, StockControl stock) {
+		this.beveDAO = datab;
 		this.stock = stock;
 	}
 	
@@ -17,29 +19,30 @@ public class BeverageControl {
 		if (!beverageIsValid(bev)) {
 			return false;
 		}
-		if (bev.getPrice() + stock.total() > 1500) {
+		if (bev.getAmount() + stock.total() > 1500) {
 			return false;
 		}
-		if (this.db.getDb().indexOf(bev) != -1) {
+		if (this.beveDAO.listAllBeverage().indexOf(bev) != -1) {
 			return false;
 		}
-		return db.getDb().add(bev);
+		beveDAO.addBeverage(bev);
+		return true;
 	}
 	
 	public List<Beverage> listBeverage() {
-		return db.getDb();
+		return beveDAO.listAllBeverage();
 	}
 	
 	public boolean delBeverage(long id) {
-		Object a = findBeverage(id);
-		return db.getDb().remove(a);
+		beveDAO.removeBeverage(findBeverage(id));
+		return true;
 	}
 	
 	public Beverage findBeverage(long id) {
 		if(id < 0) {
 			return null;
 		}
-		for(Beverage b : db.getDb()) {
+		for(Beverage b : beveDAO.listAllBeverage()) {
 			if(b.getId() == id) {
 				return b;
 			}
@@ -50,11 +53,7 @@ public class BeverageControl {
 		if(!beverageIsValid(bev)) {
 			return null;
 		}
-		
-		int indexOldBev = db.getDb().indexOf(findBeverage(id));
-		db.getDb().set(indexOldBev, bev);
-		
-		return db.getDb().get(indexOldBev);
+		return beveDAO.alterBerverage(bev);
 	}
 	
 	private boolean beverageIsValid(Beverage bev) {

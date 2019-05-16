@@ -1,22 +1,24 @@
 package bvs.controle;
 
+import bvs.dao.BeverageDAO;
 import bvs.entity.Beverage;
 
 public class StockControl{
-	private InMemoryDB bank;
-	public StockControl(InMemoryDB db) {
+//	private InMemoryDB bank;
+	private BeverageDAO bank;
+	public StockControl(BeverageDAO db) {
 		this.bank = db;
 	}
 	public float CalculateStock() {
 		float sum = 0;
-		for (Beverage bebida : bank.getDb()) {
+		for (Beverage bebida : bank.listAllBeverage()) {
 			sum += bebida.getPrice();
 			
 		}return sum;
 	}
 	public int total() {
 		int sum = 0;
-		for (Beverage bebida : bank.getDb()) {
+		for (Beverage bebida : bank.listAllBeverage()) {
 			sum += bebida.getAmount();
 			sum -=bebida.getLoss();
 		}
@@ -40,7 +42,7 @@ public class StockControl{
 	public short LevelBeverage(int id) {
 		double total = total();
 		double result = 0;
-		for (Beverage bebida : bank.getDb()) {
+		for (Beverage bebida : bank.listAllBeverage()) {
 			if (bebida.getId() == id) {
 				result = ((bebida.getAmount() - bebida.getLoss()) * 100)/total;
 			}
@@ -49,13 +51,13 @@ public class StockControl{
 	}
 	public double ValueStockLoss() {
 		int sum = 0;
-		for (Beverage bebida : bank.getDb()) {
+		for (Beverage bebida : bank.listAllBeverage()) {
 			sum +=bebida.getLoss();
 		}
 		return sum;
 	}
 	public boolean RegLoss(long id, int qtdLost) {
-		for (Beverage bebida : bank.getDb()) {
+		for (Beverage bebida : bank.listAllBeverage()) {
 			if (bebida.getId() == id) {
 				if (bebida.getAmount() > qtdLost) {
 					bebida.setLoss(qtdLost);

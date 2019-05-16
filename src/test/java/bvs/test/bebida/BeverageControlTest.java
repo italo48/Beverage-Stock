@@ -16,7 +16,7 @@ import bvs.controle.InMemoryDB;
 import bvs.controle.StockControl;
 import bvs.entity.Beverage;
 
-public class BebidaControlTest {
+public class BeverageControlTest {
 	
 	private ArrayList<Beverage> beverage;
 	private InMemoryDB db;
