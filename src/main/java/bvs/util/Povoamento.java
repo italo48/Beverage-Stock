@@ -1,12 +1,12 @@
 package bvs.util;
 
-import bvs.config.DBConfig;
+import bvs.conn.DBConnection;
 import bvs.dao.BeverageDAO;
 import bvs.entity.Beverage;
 
 public class Povoamento {
 	private static Povoamento povoaSingleton;
-	private DBConfig dbConn = new DBConfig();
+	private DBConnection dbConn = new DBConnection();
 	private BeverageDAO bevDAO = new BeverageDAO(dbConn);
 	
 	public static Povoamento getInstance() {

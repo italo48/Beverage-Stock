@@ -5,14 +5,14 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
-import bvs.config.DBConfig;
+import bvs.conn.DBConnection;
 import bvs.entity.Beverage;
 
 public class BeverageDAO {
 	private Session sessionObj;
-	private DBConfig dbConn;
+	private DBConnection dbConn;
 
-	public BeverageDAO(DBConfig dbConn) {
+	public BeverageDAO(DBConnection dbConn) {
 		this.dbConn = dbConn;
 	}
 

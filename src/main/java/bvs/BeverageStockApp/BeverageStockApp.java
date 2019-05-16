@@ -3,14 +3,14 @@ package bvs.BeverageStockApp;
 import java.util.Scanner;
 
 import bvs.boundery.UI;
-import bvs.config.DBConfig;
+import bvs.conn.DBConnection;
 import bvs.controle.BeverageControl;
 import bvs.controle.StockControl;
 import bvs.dao.BeverageDAO;
 import bvs.entity.Beverage;
 
 public class BeverageStockApp {
-	private DBConfig dbConn;
+	private DBConnection dbConn;
 	private BeverageDAO db;
 	private BeverageControl bevApp;
 	private StockControl stockApp;
@@ -19,7 +19,7 @@ public class BeverageStockApp {
 	private Scanner inputApp;
 
 	public void run() {
-		dbConn = new DBConfig();
+		dbConn = new DBConnection();
 		db = new BeverageDAO(dbConn);
 		stockApp = new StockControl(db);
 		bevApp = new BeverageControl(db, stockApp);

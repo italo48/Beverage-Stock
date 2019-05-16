@@ -1,11 +1,11 @@
-package bvs.config;
+package bvs.conn;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-public class DBConfig {
+public class DBConnection {
 	private SessionFactory sessionFactoryObj;
 	 
     public SessionFactory buildSessionFactory() {

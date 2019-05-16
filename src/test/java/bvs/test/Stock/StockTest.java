@@ -2,32 +2,24 @@ package bvs.test.Stock;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
-import bvs.controle.InMemoryDB;
+import bvs.conn.DBConnection;
 import bvs.controle.StockControl;
-import bvs.entity.Beverage;
+import bvs.dao.BeverageDAO;
 
 public class StockTest {
 	private bvs.controle.StockControl stock;
-	private ArrayList<Beverage> beverage;
-	private InMemoryDB db;
+	private BeverageDAO bevDAO;
+	@ Mock
+	private DBConnection db;
 	
 	@Before
 	public void setUp() {
-		beverage = new ArrayList<>();
-		db = new InMemoryDB(beverage);
-		stock = new StockControl(db);
-		
-		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 2.50f, (short)20, 375);
-		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 3.40f,(short)12, 375);
-		b1.setLoss(1);
-		
-		beverage.add(b1);
-		beverage.add(b2);
+		bevDAO = new BeverageDAO(db);
+		stock = new StockControl(bevDAO);
 	}
 	@Test
 	public void CalculateTheValueInRsTest() {
@@ -53,6 +45,6 @@ public class StockTest {
 	@Test
 	public void RegLostTest() {
 		stock.RegLoss(1, 300);
-		assertEquals(300, db.getDb().get(0).getLoss());
+		assertEquals(300, bevDAO.listAllBeverage().get(0).getLoss());
 	}
 }
