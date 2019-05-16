@@ -1,121 +1,57 @@
 package bvs.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 
 import bvs.conn.DBConnection;
 import bvs.entity.Beverage;
 
 public class BeverageDAO {
-	private Session sessionObj;
 	private DBConnection dbConn;
 
 	public BeverageDAO(DBConnection dbConn) {
 		this.dbConn = dbConn;
 	}
 
-	public void addBeverage(Beverage bev) {
-		System.out.println(".......Hibernate Maven Example.......\n");
+	public Beverage addBeverage(Beverage bev) {
 		try {
-			sessionObj = dbConn.buildSessionFactory().openSession();
-			sessionObj.beginTransaction();
-
-			sessionObj.save(bev);
-
-			System.out.println("\n.......Records Saved Successfully To The Database.......\n");
-
-			// Committing The Transactions To The Database
-			sessionObj.getTransaction().commit();
-		} catch (Exception sqlException) {
-			if (null != sessionObj.getTransaction()) {
-				System.out.println("\n.......Transaction Is Being Rolled Back.......");
-				sessionObj.getTransaction().rollback();
-			}
-			sqlException.printStackTrace();
+			dbConn.conn().createStatement()
+					.executeQuery("INSERT INTO Beverage (id, alcoholcontent, amount, isprohibited, loss,"
+							+ "name, price, type) VALUES(" + bev.getId() + "," + bev.getAlcoholContent() + ","
+							+ bev.getAmount() + "," + bev.isProhibited() + "," + bev.getLoss() + "," + bev.getName()
+							+ "," + bev.getPrice() + "," + bev.getType() + ");");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
-			if (sessionObj != null) {
-				sessionObj.close();
-			}
+			dbConn.closeConn();
 		}
+		return bev;
 	}
 
 	public List<Beverage> listAllBeverage() {
-		List<Beverage> list = null;
-		System.out.println(".......Hibernate Maven Example.......\n");
+		List<Beverage> ls = new ArrayList<>();
 		try {
-			sessionObj = dbConn.buildSessionFactory().openSession();
-			sessionObj.beginTransaction(); 
+			ResultSet setRes = dbConn.conn().createStatement().executeQuery("SELECT * FROM Beverage;");
 
-			Criteria crit = sessionObj.createCriteria(Beverage.class);
-			list = crit.list();
-
-			System.out.println("\n.......Records Saved Successfully To The Database.......\n");
-
-			// Committing The Transactions To The Database
-			sessionObj.getTransaction().commit();
-		} catch (Exception sqlException) {
-			if (null != sessionObj.getTransaction()) {
-				System.out.println("\n.......Transaction Is Being Rolled Back.......");
-				sessionObj.getTransaction().rollback();
+			while (setRes.next()) {
+				ls.add(new Beverage(setRes.getInt("id"), setRes.getString("name"), setRes.getString("type"),
+						setRes.getFloat("price"), setRes.getShort("alcoholContent"), setRes.getInt("amount")));
 			}
-			sqlException.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
-			if (sessionObj != null) {
-				sessionObj.close();
-			}
+			dbConn.closeConn();
 		}
-		return list;
+		return ls;
 	}
 
 	public void removeBeverage(Beverage bev) {
-		System.out.println(".......Hibernate Maven Example.......\n");
-		try {
-			sessionObj = dbConn.buildSessionFactory().openSession();
-			sessionObj.beginTransaction();
 
-			sessionObj.delete(bev);
-			System.out.println("\n.......Records Saved Successfully To The Database.......\n");
-
-			// Committing The Transactions To The Database
-			sessionObj.getTransaction().commit();
-		} catch (Exception sqlException) {
-			if (null != sessionObj.getTransaction()) {
-				System.out.println("\n.......Transaction Is Being Rolled Back.......");
-				sessionObj.getTransaction().rollback();
-			}
-			sqlException.printStackTrace();
-		} finally {
-			if (sessionObj != null) {
-				sessionObj.close();
-			}
-		}
 	}
 
 	public Beverage alterBerverage(Beverage newBev) {
-		Beverage b = null;
-		System.out.println(".......Hibernate Maven Example.......\n");
-		try {
-			sessionObj = dbConn.buildSessionFactory().openSession();
-			sessionObj.beginTransaction();
-
-			b = (Beverage) sessionObj.save(newBev);
-			System.out.println("\n.......Records Saved Successfully To The Database.......\n");
-
-			// Committing The Transactions To The Database
-			sessionObj.getTransaction().commit();
-		} catch (Exception sqlException) {
-			if (null != sessionObj.getTransaction()) {
-				System.out.println("\n.......Transaction Is Being Rolled Back.......");
-				sessionObj.getTransaction().rollback();
-			}
-			sqlException.printStackTrace();
-		} finally {
-			if (sessionObj != null) {
-				sessionObj.close();
-			}
-		}
-		return b;
+		return null;
 	}
 }

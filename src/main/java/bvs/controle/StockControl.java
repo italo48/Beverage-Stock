@@ -4,7 +4,6 @@ import bvs.dao.BeverageDAO;
 import bvs.entity.Beverage;
 
 public class StockControl{
-//	private InMemoryDB bank;
 	private BeverageDAO bank;
 	public StockControl(BeverageDAO db) {
 		this.bank = db;
