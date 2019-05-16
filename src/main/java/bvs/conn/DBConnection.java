@@ -5,11 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-	private Connection c;
-
-	public DBConnection(Connection conn) {
-		this.c = conn;
-	}
+	private Connection c = null;
 	
 	public Connection conn() {
 		try {
