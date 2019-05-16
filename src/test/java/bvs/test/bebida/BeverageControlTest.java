@@ -1,6 +1,6 @@
 package bvs.test.bebida;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +31,7 @@ public class BeverageControlTest {
 		stock = new StockControl(bevDAO);
 		beverageControl = new BeverageControl(bevDAO, stock);	
 	}
+	//add rem alt - boolean / list -lista
 //	Teste que era pra dar certo
 	@Test
 	public void successFindBeverage() {
@@ -52,66 +53,87 @@ public class BeverageControlTest {
 		Mockito.verify(bevDAO, Mockito.times(1)).listAllBeverage();
 	}
 	
-//	@Test
-//	public void sucessRegisterBeverage() {
-//		Beverage b5 = new Beverage(5, "Skoll", "Cerveja", 2.99f, (short)5, 100);
-//		assertTrue(beverageControl.addBeverage(b5));
-//	}
-//	
-//	@Test
-//	public void failRegisterBeverageInvalid() {
-//		Beverage b6 = new Beverage();
-//		assertFalse(beverageControl.addBeverage(b6));
-//	}
-//	
-//	@Test
-//	public void failRegisterBeverageWithWithParametersInvalid() {
-//		Beverage bFalse = new Beverage(1, "", "",0.0f,(short)0, 0);
-//		assertFalse(beverageControl.addBeverage(bFalse));
-//	}
-//	
-//	@Test
-//	public void failRegisterBeverageSelf() {
-//		Beverage b7 = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150);
-//		assertTrue(beverageControl.addBeverage(b7));
-//		assertFalse(beverageControl.addBeverage(b7));
-//	}
-//	
-//	@Test
-//	public void failRegisterBeverageWithLossGreaterThenAmount() {
-//		Beverage bTrab = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150);
-//		bTrab.setLoss(1500);
-//		assertFalse(beverageControl.addBeverage(bTrab));
-//	}
-//	
-//	@Test
-//	public void listAllBeverage() {
-//		assertEquals(beverageControl.listBeverage().size(), 4);	
-//	}
-//	
-//	@Test
-//	public void successRemoveBeverage() {
-//		assertTrue(beverageControl.delBeverage(1));
-//	}
-//	
-//	@Test
-//	public void failRemoveBeverageIdInvalid() {
-//		assertFalse(beverageControl.delBeverage(-1));
-//	}
-//	
-//	@Test
-//	public void failFindBeverageIdInvalid() {
-//		assertNull(beverageControl.findBeverage(-3));
-//	}
-//	
-//	@Test
-//	public void successUpdateBeverage() {
-//		Beverage oldBev = bevDAO.listAllBeverage().get(0);
-//		Beverage newBev = new Beverage(10, "Heiniken", "Cerveja", 4.99f, (short)10, 10000);
-//		
-//		assertEquals(newBev, beverageControl.upBeverage(oldBev.getId(), newBev));
-//	}
-//	
+	@Test
+	public void sucessRegisterBeverage() {
+		Beverage b5 = new Beverage(5, "Skoll", "Cerveja", 2.99f, (short)5, 100);
+
+		Mockito.when(bevDAO.addBeverage(b5)).thenReturn(true);
+				
+		assertTrue(beverageControl.addBeverage(b5));
+		
+		//Mockito.verify(bevDAO, Mockito.times(1)).listAllBeverage();
+	}
+	
+	@Test
+	public void failRegisterBeverageInvalid() {
+		Beverage b6 = new Beverage();
+		Mockito.when(bevDAO.addBeverage(b6)).thenReturn(false);
+		assertFalse(beverageControl.addBeverage(b6));
+	}
+	
+	@Test
+	public void failRegisterBeverageWithWithParametersInvalid() {
+		Beverage bFalse = new Beverage(1, "", "",0.0f,(short)0, 0);
+		Mockito.when(bevDAO.addBeverage(bFalse)).thenReturn(false);
+		assertFalse(beverageControl.addBeverage(bFalse));
+	}
+	
+	@Test
+	public void failRegisterBeverageEquals() {
+		Beverage b7 = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150);
+		Mockito.when(bevDAO.addBeverage(b7)).thenReturn(true);
+		assertTrue(beverageControl.addBeverage(b7));
+		assertFalse(beverageControl.addBeverage(b7));
+	}
+	
+	@Test
+	public void failRegisterBeverageWithLossGreaterThenAmount() {
+		Beverage bTrab = new Beverage(7, "Skoll", "Cerveja", 2.99f, (short)34, 150);
+
+		bTrab.setLoss(1500);
+		
+		Mockito.when(bevDAO.addBeverage(bTrab)).thenReturn(false);
+		assertFalse(beverageControl.addBeverage(bTrab));
+	}
+	
+	@Test
+	public void listAllBeverage() {
+		List<Beverage> ls = new ArrayList<>();
+
+		Mockito.when(bevDAO.listAllBeverage()).thenReturn(ls);
+
+		assertEquals(beverageControl.listBeverage().size(), 0);	
+	}
+	
+	@Test
+	public void successRemoveBeverage() {
+		Mockito.when(bevDAO.removeBeverage(1)).thenReturn(true);
+		
+		assertTrue(beverageControl.delBeverage(1));
+	}
+	
+	@Test
+	public void failRemoveBeverageIdInvalid() {
+		Mockito.when(bevDAO.removeBeverage(-1)).thenReturn(false);
+		assertFalse(beverageControl.delBeverage(-1));
+	}
+	
+	@Test
+	public void failFindBeverageIdInvalid() {
+		List<Beverage> ls = new ArrayList<>();
+		Mockito.when(bevDAO.listAllBeverage()).thenReturn(ls);
+		assertNull(beverageControl.findBeverage(-3));
+	}
+	
+	@Test
+	public void successUpdateBeverage() {
+		Beverage oldBev = bevDAO.listAllBeverage().get(0);
+		Beverage newBev = new Beverage(10, "Heiniken", "Cerveja", 4.99f, (short)10, 10000);
+		Mockito.when(bevDAO.alterBerverage(newBev)).thenReturn(true);
+
+		assertEquals(newBev, beverageControl.upBeverage(oldBev.getId(), newBev));
+	}
+	
 //	@Test
 //	public void successAltBeverage() {
 //		Beverage oldBev = bevDAO.listAllBeverage().get(0);
