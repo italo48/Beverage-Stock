@@ -11,22 +11,21 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import bvs.controle.BeverageControl;
-import bvs.controle.InMemoryDB;
-import bvs.controle.StockControl;
+import bvs.controller.BeverageControl;
+import bvs.controller.InMemoryDB;
+import bvs.controller.StockControl;
 import bvs.entity.Beverage;
 
 public class BebidaControlTest {
-	
-	private ArrayList<Beverage> beverage;
+
 	private InMemoryDB db;
 	private BeverageControl beverageControl;
-	private StockControl stock;
+
 	@Before
 	public void setUp() {
-		beverage = new ArrayList<>();
+		ArrayList<Beverage> beverage = new ArrayList<>();
 		db = new InMemoryDB(beverage);
-		stock = new StockControl(db);
+		StockControl stock = new StockControl(db);
 		beverageControl = new BeverageControl(db, stock);
 		Beverage b1 = new Beverage(1, "Ninnoff", "Vodka", 8.99f, (short)20, 120);
 		Beverage b2 = new Beverage(2, "Fogo Verde", "Absinto", 190.00f,(short)12, 750);

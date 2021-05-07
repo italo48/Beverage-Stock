@@ -1,11 +1,11 @@
-package bvs.controle;
+package bvs.controller;
 
 import java.util.ArrayList;
 
 import bvs.entity.Beverage;
 
 public class InMemoryDB {
-	private ArrayList<Beverage> db;
+	private final ArrayList<Beverage> db;
 	
 	public InMemoryDB(ArrayList<Beverage> db) {
 		this.db = db;

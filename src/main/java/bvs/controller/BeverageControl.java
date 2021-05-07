@@ -1,12 +1,12 @@
-package bvs.controle;
+package bvs.controller;
 
 import java.util.List;
 
 import bvs.entity.Beverage;
 
 public class BeverageControl {
-	private InMemoryDB db;
-	private StockControl stock;
+	private final InMemoryDB db;
+	private final StockControl stock;
 
 	public BeverageControl(InMemoryDB datab, StockControl stock) {
 		this.db = datab;
@@ -20,10 +20,10 @@ public class BeverageControl {
 		if (bev.getPrice() + stock.total() > 1500) {
 			return false;
 		}
-		if (this.db.getDb().indexOf(bev) != -1) {
-			return false;
+		if (!this.db.getDb().contains(bev)) {
+			return db.getDb().add(bev);
 		}
-		return db.getDb().add(bev);
+		return false;
 	}
 	
 	public List<Beverage> listBeverage() {
@@ -58,16 +58,13 @@ public class BeverageControl {
 	}
 	
 	private boolean beverageIsValid(Beverage bev) {
-		if (bev.getId() <=  0 || bev.getAmount() < 0 || bev.getAlcoholContent() < 0
-				|| bev.getLoss() > bev.getAmount() || bev.getName().equals("") 
-				|| bev.getType().equals("") || bev.getPrice() == 0.0) {
-			return false;
-		}
-		return true;
+		return bev.getId() > 0 && bev.getAmount() >= 0 && bev.getAlcoholContent() >= 0
+				&& bev.getLoss() <= bev.getAmount() && !bev.getName().equals("")
+				&& !bev.getType().equals("") && bev.getPrice() != 0.0;
 	}
 //	Ganbs
-	public Beverage toBeverage(String beverage) throws Exception {
-		String bevStringFormat[] = beverage.split(",");
+	public Beverage toBeverage(String beverage) {
+		String[] bevStringFormat = beverage.split(",");
 			long id = Integer.parseInt(bevStringFormat[0]);
 			float price = Float.parseFloat(bevStringFormat[3]);
 			int ac = Integer.parseInt(bevStringFormat[4]);

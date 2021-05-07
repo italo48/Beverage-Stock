@@ -1,9 +1,9 @@
-package bvs.controle;
+package bvs.controller;
 
 import bvs.entity.Beverage;
 
 public class StockControl{
-	private InMemoryDB bank;
+	private final InMemoryDB bank;
 	public StockControl(InMemoryDB db) {
 		this.bank = db;
 	}
@@ -23,7 +23,7 @@ public class StockControl{
 		return sum;
 	}
 	public double calcPorc() {
-		return (total() * 100)/1500;
+		return (total() * 100.0) / 1500.0;
 	}
 	public byte LevelStock() {
 		double qtd = total();

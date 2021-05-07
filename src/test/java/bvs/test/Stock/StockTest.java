@@ -7,18 +7,17 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import bvs.controle.InMemoryDB;
-import bvs.controle.StockControl;
+import bvs.controller.InMemoryDB;
+import bvs.controller.StockControl;
 import bvs.entity.Beverage;
 
 public class StockTest {
-	private bvs.controle.StockControl stock;
-	private ArrayList<Beverage> beverage;
+	private bvs.controller.StockControl stock;
 	private InMemoryDB db;
 	
 	@Before
 	public void setUp() {
-		beverage = new ArrayList<>();
+		ArrayList<Beverage> beverage = new ArrayList<>();
 		db = new InMemoryDB(beverage);
 		stock = new StockControl(db);
 		

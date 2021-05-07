@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import bvs.boundery.UI;
-import bvs.controle.BeverageControl;
-import bvs.controle.InMemoryDB;
-import bvs.controle.StockControl;
+import bvs.controller.BeverageControl;
+import bvs.controller.InMemoryDB;
+import bvs.controller.StockControl;
 import bvs.entity.Beverage;
 
 public class BeverageStockApp {
-	private ArrayList<Beverage> beverageDB;
-	private InMemoryDB db;
 	private BeverageControl bevApp;
 	private StockControl stockApp;
 	private UI userInterface;
@@ -19,14 +17,14 @@ public class BeverageStockApp {
 	private Scanner inputApp;
 
 	public void run() {
-		beverageDB = new ArrayList<>();
-		db = new InMemoryDB(beverageDB);
+		ArrayList<Beverage> beverageDB = new ArrayList<>();
+		InMemoryDB db = new InMemoryDB(beverageDB);
 		stockApp = new StockControl(db);
 		bevApp = new BeverageControl(db, stockApp);
 		userInterface = new UI();
 		inputApp = new Scanner(System.in);
 
-		int op = -1;
+		int op;
 		boolean controloop = true;
 
 		do {
@@ -48,9 +46,9 @@ public class BeverageStockApp {
 	}
 
 	public void beverageApp() {
-		int op = -1;
-		String bev = "";
-		long id = 0;
+		int op;
+		String bev;
+		long id;
 		boolean controloop = true;
 		while (controloop) {
 			userInterface.beverageMenu();
@@ -65,7 +63,6 @@ public class BeverageStockApp {
 
 				try{
 					Beverage beverage = bevApp.toBeverage(bev);
-					bev = "";
 					userInterface.askIsProhibited();
 					bev = inputApp.next();
 					if (bev.equals("S") || bev.equals("s")) {
@@ -179,7 +176,7 @@ public class BeverageStockApp {
 	}
 
 	public void stockApp() {
-		int op = -1;
+		int op;
 		boolean controloop = true;
 		while (controloop) {
 			userInterface.stockMenu();

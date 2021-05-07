@@ -29,48 +29,24 @@ public class Beverage {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getType() {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public float getPrice() {
 		return price;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
 	}
 
 	public short getAlcoholContent() {
 		return alcoholContent;
 	}
 
-	public void setAlcoholContent(short alcoholContent) {
-		this.alcoholContent = alcoholContent;
-	}
-
 	public int getAmount() {
 		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
 	}
 
 	public boolean isProhibited() {

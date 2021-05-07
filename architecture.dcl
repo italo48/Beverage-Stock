@@ -1,6 +1,6 @@
 %modules def
 module View: bvs.boundery.**
-module Control: bvs.controle.**
+module Control: bvs.controller.**
 module Entity: bvs.entity.**
 module App: bvs.BeverageStockApp.BeverageStockApp
 
