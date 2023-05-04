@@ -5,7 +5,7 @@
 #### Tecnologias
 - [Java](https://www.java.com/pt-BR/)
 - [JUnit](https://junit.org/junit5/)
-- [The Entity-Control-Boundary Pattern](https://homepages.dcc.ufmg.br/~amendes/GlossarioUML/glossario/conteudo/classe/tipos_de_classe.htm)
+- [The Entity-Control-Boundary Pattern](https://www.cs.sjsu.edu/~pearce/modules/patterns/enterprise/ecb/ecb.htm)
 - [Test-Driven Development (TDD)](https://tdd.caelum.com.br/)
 
 #### Descrição
